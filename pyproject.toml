@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "comborag"
+version = "0.1.0"
+description = ""
+authors = ["Olaf <olaf@pobox.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+langchain-community = "^0.2.1"
+tiktoken = "^0.7.0"
+langchainhub = "^0.1.17"
+chromadb = "^0.5.0"
+langchain = "^0.2.1"
+langgraph = "^0.0.59"
+tavily-python = "^0.3.3"
+python-dotenv = "^1.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
