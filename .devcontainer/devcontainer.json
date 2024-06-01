@@ -1,0 +1,46 @@
+{
+	"name": "poetry3-poetry-pyenv",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+
+	// 👇 Features to add to the Dev Container. More info: https://containers.dev/implementors/features.
+	// "features": {},
+
+	// 👇 Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// 👇 Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "",
+
+	// 👇 Configure tool-specific properties.
+	"customizations": {
+        "vscode": {
+            "extensions":[
+				"ms-python.python",
+				"njpwerner.autodocstring",
+				"Codeium.codeium",
+				"sourcegraph.sourcegraph",
+				"zeshuaro.vscode-python-poetry",
+				"ms-python.debugpy",
+				"ms-python.vscode-pylance"
+			]
+            }
+		},
+		"features": {
+			"ghcr.io/devcontainers/features/common-utils:2": {
+				"installZsh": true,
+				"installOhMyZsh": true,
+				"installOhMyZshConfig": true,
+				"upgradePackages": true,
+				"username": "automatic",
+				"userUid": "automatic"
+			},
+			"ghcr.io/devcontainers-contrib/features/black:2": {
+				"version": "latest"
+			}
+		}
+
+	// 👇 Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
