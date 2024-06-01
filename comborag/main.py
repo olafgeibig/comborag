@@ -1,9 +1,15 @@
-from environment import set_environment_variables
-from agent import create_agent
+from comborag.grader import Grader
+from langchain_openai import ChatOpenAI
+
+import os
+from dotenv import load_dotenv
+load_dotenv()  # take environment variables from .env.
 
 def main():
-    set_environment_variables()
-    # Add the main logic here, for example, creating agents and running the graph
+    llm = ChatOpenAI(model="gpt-4o", temperature=0)
+    grader = Grader(llm=llm)
+    question = "agent memory"
+    print(grader.grade(question))
 
 if __name__ == "__main__":
     main()
