@@ -29,7 +29,8 @@
 				"yzhang.markdown-all-in-one",
 				"jebbs.plantuml",
 				"alefragnani.project-manager",
-				"choppedcode.tasks-and-contexts"
+				"choppedcode.tasks-and-contexts",
+				"donjayamanne.python-environment-manager"
 			]
             }
 		},
