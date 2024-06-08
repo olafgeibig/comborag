@@ -9,7 +9,7 @@ def main():
     llm = ChatOpenAI(model="gpt-4o", temperature=0)
     grader = Grader(llm=llm)
     question = "agent memory"
-    print(grader.grade(question))
+    print(grader.retrieval_grade(question))
 
 if __name__ == "__main__":
     main()
