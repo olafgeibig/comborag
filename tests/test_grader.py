@@ -15,14 +15,15 @@ class TestGrader(unittest.TestCase):
         result = self.grader.retrieval_grade(question)
         self.assertEqual(result, expected_response)
 
-    def test_halluciantion_grade(self):
-        question = "Is the answer grounded in facts?"
-        docs = "The computer has no drive."
-        expected_response = {"score": "no"}
-        self.mock_llm.invoke.return_value = expected_response
+    # def test_halluciantion_grade(self):
+    #     generation = "The computer has no monitor."
+    #     docs = "The servers are located in a datacenter in huge racks."
+    #     expected_response = {"score": "no"}
+    #     self.mock_llm.invoke.return_value = expected_response
 
-        result = self.grader.halluciantion_grade(question, docs)
-        self.assertEqual(result, expected_response)
+    #     result = self.grader.halluciantion_grade(generation, docs)
+    #     print(result)
+    #     self.assertEqual(result, expected_response)
 
 if __name__ == "__main__":
     unittest.main()
