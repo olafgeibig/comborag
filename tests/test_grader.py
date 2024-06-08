@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import MagicMock
-from comborag.grader.py import Grader
+from comborag.grader import Grader
 
 class TestGrader(unittest.TestCase):
     def setUp(self):
