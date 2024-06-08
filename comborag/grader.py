@@ -38,6 +38,6 @@ class Grader:
         retrieval_grader = self.retrieval_prompt | self.llm | self.output_parser
         return retrieval_grader.invoke({"question": question, "document": doc_txt})
     
-    def halluciantion_grade(self, question, docs):
+    def halluciantion_grade(self, generation, docs):
         hallucination_grader = self.hallucination_prompt | self.llm | self.output_parser
-        return hallucination_grader.invoke({"question": question, "documents": docs})
+        return hallucination_grader.invoke({"generation": generation, "documents": docs})
