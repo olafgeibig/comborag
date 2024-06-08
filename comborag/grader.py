@@ -2,7 +2,7 @@ from langchain.prompts import PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 
 class Grader:
-    def __init__(self, llm):
+    def __init__(self, llm, retriever):
         self.retrieval_prompt = PromptTemplate(
             template="""system
             You are a grader assessing relevance 
@@ -30,11 +30,11 @@ class Grader:
         )
         self.llm = llm
         self.output_parser = JsonOutputParser()
+        self.retriever = retriever
 
     def retrieval_grade(self, question):
-        # docs = retriever.invoke(question)
-        # doc_txt = docs[1].page_content
-        doc_txt = "My computer has no drive and that's not okay."
+        docs = self.retriever.invoke(question)
+        doc_txt = docs[1].page_content
         retrieval_grader = self.retrieval_prompt | self.llm | self.output_parser
         return retrieval_grader.invoke({"question": question, "document": doc_txt})
     
