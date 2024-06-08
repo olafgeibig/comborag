@@ -11,6 +11,8 @@ class TestGrader(unittest.TestCase):
     def test_retrieval_grade(self):
         question = "What is the issue with my computer?"
         expected_response = {"score": "yes"}
+        docs = [{"page_content": "My computer has no drive and that's not okay."}]
+        self.mock_retriever.invoke.return_value = docs
         self.mock_llm.invoke.return_value = expected_response
 
         result = self.grader.retrieval_grade(question)
