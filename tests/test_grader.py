@@ -5,7 +5,8 @@ from comborag.grader import Grader
 class TestGrader(unittest.TestCase):
     def setUp(self):
         self.mock_llm = MagicMock()
-        self.grader = Grader(self.mock_llm)
+        self.mock_retriever = MagicMock()
+        self.grader = Grader(self.mock_llm, self.mock_retriever)
 
     def test_retrieval_grade(self):
         question = "What is the issue with my computer?"
