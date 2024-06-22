@@ -3,6 +3,7 @@ from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import GPT4AllEmbeddings
 
+
 class Indexer:
     def __init__(self):
         self.vectorstore = None

@@ -24,10 +24,16 @@ my-docs/
 
 #Ignore mypy cache
 .mypy_cache/
-node_modules
+
+#IDEs and OS
 .idea
 .DS_Store
-.docusaurus
-build
-docs/build
+# .vscode
+
+#Tools
 .aider*
+.pytest_cache
+.ruff_cache
+htmlcov
+.coverage
+.env

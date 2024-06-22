@@ -1,28 +1,46 @@
-[tool.poetry]
+[project]
 name = "comborag"
 version = "0.1.0"
-description = ""
-authors = ["Olaf <olaf@pobox.com>"]
-license = "MIT"
+description = "Add your description here"
+authors = [
+    { name = "Olaf", email = "olaf@pobox.com" }
+]
+dependencies = [
+    "langchain-community>=0.2.5",
+    "tiktoken>=0.7.0",
+    "langchainhub>=0.1.20",
+    "chromadb>=0.5.3",
+    "langchain>=0.2.5",
+    "langgraph>=0.1.1",
+    "tavily-python>=0.3.3",
+    "python-dotenv>=1.0.1",
+    "langchain-openai>=0.1.9",
+]
 readme = "README.md"
-
-[tool.poetry.dependencies]
-python = ">=3.11,<3.13"
-langchain-community = "^0.2.1"
-tiktoken = "^0.7.0"
-langchainhub = "^0.1.17"
-chromadb = "^0.5.0"
-langchain = "^0.2.1"
-langgraph = "^0.0.59"
-tavily-python = "^0.3.3"
-python-dotenv = "^1.0.1"
-openai = "^1.30.5"
-langchain-openai = "^0.1.8"
-
-
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.2.2"
+requires-python = ">= 3.11"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+app = 'comborag.main:main'
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "pytest>=8.2.2",
+    "black>=24.4.2",
+    "coverage>=7.5.3",
+]
+
+[tool.rye.scripts]
+cvg-test = "coverage run -m pytest tests"
+cvg-rep = "coverage report"
+cvg = {chain = ["cvg-test", "cvg-rep"]}
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/comborag"]

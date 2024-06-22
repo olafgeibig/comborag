@@ -1,6 +1,7 @@
 from langchain.prompts import PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 
+
 class Grader:
     def __init__(self, llm, retriever):
         self.retrieval_prompt = PromptTemplate(
@@ -41,7 +42,9 @@ class Grader:
         retrieval_grader = self.retrieval_prompt | self.llm | self.output_parser
         print(retrieval_grader)
         return retrieval_grader.invoke({"question": question, "document": doc_txt})
-    
+
     def halluciantion_grade(self, generation, docs):
         hallucination_grader = self.hallucination_prompt | self.llm | self.output_parser
-        return hallucination_grader.invoke({"generation": generation, "documents": docs})
+        return hallucination_grader.invoke(
+            {"generation": generation, "documents": docs}
+        )
