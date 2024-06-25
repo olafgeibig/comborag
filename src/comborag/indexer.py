@@ -5,13 +5,13 @@ from langchain_community.embeddings import GPT4AllEmbeddings
 
 
 class Indexer:
-    def __init__(self):
-        self.vectorstore = self.create_vectorstore()
+    def __init__(self, collection_name="rag-chroma"):
+        self.vectorstore = self.create_vectorstore(collection_name)
         self.retriever = self.vectorstore.as_retriever()
 
-    def create_vectorstore(self):
+    def create_vectorstore(self, collection_name):
         return Chroma(
-            collection_name="rag-chroma",
+            collection_name=collection_name,
             embedding=GPT4AllEmbeddings(),
         )
 
