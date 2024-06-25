@@ -1,39 +1,19 @@
-#Ignore env containing secrets
+# Ignore env containing secrets
 .env
 .venv
 .envrc
 
-#Ignore Virtual Env
-env/
-venv/
-.venv/
-
-# Other Environments
-ENV/
-env.bak/
-venv.bak/
-
-#Ignore generated outputs
-outputs/
-
-#Ignore my local docs
-my-docs/
-
-#Ignore pycache
+# Ignore pycache
 **/__pycache__/
 
-#Ignore mypy cache
-.mypy_cache/
-
-#IDEs and OS
+# IDEs and OS
 .idea
 .DS_Store
 # .vscode
 
-#Tools
+# Tools
 .aider*
 .pytest_cache
 .ruff_cache
 htmlcov
 .coverage
-.env

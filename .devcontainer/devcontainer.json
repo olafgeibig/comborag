@@ -1,5 +1,5 @@
 {
-	"name": "poetry3-poetry-pyenv",
+	"name": "python-rye-aider",
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
@@ -21,7 +21,6 @@
 				"njpwerner.autodocstring",
 				"Codeium.codeium",
 				"sourcegraph.sourcegraph",
-				"zeshuaro.vscode-python-poetry",
 				"ms-python.debugpy",
 				"ms-python.vscode-pylance",
 				"MattFlower.aider",
