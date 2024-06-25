@@ -6,8 +6,14 @@ from langchain_community.embeddings import GPT4AllEmbeddings
 
 class Indexer:
     def __init__(self):
-        self.vectorstore = None
-        self.retriever = None
+        self.vectorstore = self.create_vectorstore()
+        self.retriever = self.vectorstore.as_retriever()
+
+    def create_vectorstore(self):
+        return Chroma(
+            collection_name="rag-chroma",
+            embedding=GPT4AllEmbeddings(),
+        )
 
     def index_urls(self, urls):
         docs = [WebBaseLoader(url).load() for url in urls]
@@ -19,9 +25,4 @@ class Indexer:
         doc_splits = text_splitter.split_documents(docs_list)
 
         # Add to vectorDB
-        self.vectorstore = Chroma.from_documents(
-            documents=doc_splits,
-            collection_name="rag-chroma",
-            embedding=GPT4AllEmbeddings(),
-        )
-        self.retriever = self.vectorstore.as_retriever()
+        self.vectorstore.add_documents(doc_splits)
