@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import MagicMock
 from comborag.grader import Grader
-from types import SimpleNamespace
 from langchain_community.chat_models.fake import FakeListChatModel
+
 
 class TestGrader(unittest.TestCase):
     def setUp(self):
@@ -35,6 +35,7 @@ class TestGrader(unittest.TestCase):
     #     result = self.grader.halluciantion_grade(generation, docs)
     #     print(result)
     #     self.assertEqual(result, expected_response)
+
 
 if __name__ == "__main__":
     unittest.main()

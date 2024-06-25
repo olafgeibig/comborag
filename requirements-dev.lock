@@ -52,6 +52,7 @@ click==8.1.7
 coloredlogs==15.0.1
     # via onnxruntime
 coverage==7.5.3
+    # via pytest-cov
 dataclasses-json==0.6.7
     # via langchain-community
 deprecated==1.2.14
@@ -80,6 +81,8 @@ google-auth==2.30.0
     # via kubernetes
 googleapis-common-protos==1.63.1
     # via opentelemetry-exporter-otlp-proto-grpc
+greenlet==3.0.3
+    # via sqlalchemy
 grpcio==1.64.1
     # via chromadb
     # via opentelemetry-exporter-otlp-proto-grpc
@@ -254,6 +257,8 @@ pypika==0.48.9
 pyproject-hooks==1.1.0
     # via build
 pytest==8.2.2
+    # via pytest-cov
+pytest-cov==5.0.0
 python-dateutil==2.9.0.post0
     # via kubernetes
     # via posthog

@@ -14,39 +14,36 @@
 	// "postCreateCommand": "",
 
 	// 👇 Configure tool-specific properties.
-	"customizations": {
+    "customizations": {
         "vscode": {
-            "extensions":[
-				"ms-python.python",
-				"njpwerner.autodocstring",
-				"Codeium.codeium",
-				"sourcegraph.sourcegraph",
-				"ms-python.debugpy",
-				"ms-python.vscode-pylance",
-				"MattFlower.aider",
-				"VisualStudioExptTeam.intellicode-api-usage-examples",
-				"yzhang.markdown-all-in-one",
-				"jebbs.plantuml",
-				"alefragnani.project-manager",
-				"choppedcode.tasks-and-contexts",
-				"donjayamanne.python-environment-manager"
-			]
-            }
-		},
-		"features": {
-			"ghcr.io/devcontainers/features/common-utils:2": {
-				"installZsh": true,
-				"installOhMyZsh": true,
-				"installOhMyZshConfig": true,
-				"upgradePackages": true,
-				"username": "automatic",
-				"userUid": "automatic"
-			},
-			"ghcr.io/devcontainers-contrib/features/black:2": {
-				"version": "latest"
-			}
-		}
-
-	// 👇 Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+            "extensions": [
+                "ms-python.python",
+                "njpwerner.autodocstring",
+                "Codeium.codeium",
+                "sourcegraph.sourcegraph",
+                "ms-python.debugpy",
+                "ms-python.vscode-pylance",
+                "MattFlower.aider",
+                "VisualStudioExptTeam.intellicode-api-usage-examples",
+                "yzhang.markdown-all-in-one",
+                "jebbs.plantuml",
+                "alefragnani.project-manager",
+                "choppedcode.tasks-and-contexts",
+                "donjayamanne.python-environment-manager"
+            ]
+        }
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": true,
+            "installOhMyZsh": true,
+            "installOhMyZshConfig": true,
+            "upgradePackages": true,
+            "username": "vscode",
+            "userUid": "1000",
+            "userGid": "1000"
+        }
+    },
+    "remoteUser": "vscode",
+    "postCreateCommand": "if [ ! -f README.md ]; then echo \"# $(basename $PWD)\n\nThis is the README file for the $(basename $PWD) project.\" > README.md; fi"
 }

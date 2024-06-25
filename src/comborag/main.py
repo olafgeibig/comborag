@@ -1,11 +1,8 @@
 from comborag.grader import Grader
 from langchain_openai import ChatOpenAI
-
-import os
 from dotenv import load_dotenv
 
 load_dotenv()  # take environment variables from .env.
-
 
 def main():
     llm = ChatOpenAI(model="gpt-4o", temperature=0)

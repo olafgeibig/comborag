@@ -1,7 +1,5 @@
 from langchain.prompts import PromptTemplate
-from langchain import hub
 from langchain_core.output_parsers import StrOutputParser
-
 
 class Rag:
     def __init__(self, llm):
