@@ -2,6 +2,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import GPT4AllEmbeddings
+from loguru import logger
 
 
 class Indexer:
@@ -10,12 +11,14 @@ class Indexer:
         self.retriever = self.vectorstore.as_retriever()
 
     def create_vectorstore(self, collection_name):
+        logger.info(f"Creating vectorstore with collection name: {collection_name}")
         return Chroma(
             collection_name=collection_name,
             embedding=GPT4AllEmbeddings(),
         )
 
     def index_urls(self, urls):
+        logger.info(f"Indexing URLs: {urls}")
         docs = [WebBaseLoader(url).load() for url in urls]
         docs_list = [item for sublist in docs for item in sublist]
 
