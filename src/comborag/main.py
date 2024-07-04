@@ -5,7 +5,7 @@ from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 from dotenv import load_dotenv
-from langchain.text_splitter import TokenTextSplitter
+import tiktoken
 
 load_dotenv()  # take environment variables from .env.
 
@@ -25,11 +25,11 @@ def main():
     docs = retriever.retrieve(question)
     print(docs)
     
-    # Count tokens in retrieved documents
-    text_splitter = TokenTextSplitter()
+    # Count tokens in retrieved documents using tiktoken
+    enc = tiktoken.get_encoding("cl100k_base")
     total_tokens = 0
     for doc in docs:
-        tokens = text_splitter.split_text(doc)
+        tokens = enc.encode(doc)
         total_tokens += len(tokens)
     print(f"Total tokens in retrieved documents: {total_tokens}")
     
