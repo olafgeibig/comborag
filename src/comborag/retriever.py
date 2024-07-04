@@ -14,13 +14,17 @@ class Retriever:
         logger.info(f"Creating vectorstore with collection name: {collection_name}")
         return Chroma(
             collection_name=collection_name,
-            embedding_function=GPT4AllEmbeddings(model_name="all-MiniLM-L6-v2.gguf2.f16.gguf"),
+            embedding_function=GPT4AllEmbeddings(
+                model_name="all-MiniLM-L6-v2.gguf2.f16.gguf"
+            ),
         )
 
     def index_urls(self, urls):
         logger.info(f"Indexing URLs: {urls}")
         docs = [WebBaseLoader(url).load() for url in urls]
         docs_list = [item for sublist in docs for item in sublist]
+        # documents = "\n\n".join(doc.page_content for doc in docs_list)
+        # print(docs_list)
 
         text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
             chunk_size=250, chunk_overlap=0
@@ -32,4 +36,4 @@ class Retriever:
 
     def retrieve(self, query):
         logger.info(f"Retrieving documents for query: {query}")
-        return self.retriever.get_relevant_documents(query)
+        return self.retriever.invoke(query)

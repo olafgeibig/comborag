@@ -1,28 +1,22 @@
 from langchain.prompts import PromptTemplate
-from langchain import hub
 from langchain_core.output_parsers import StrOutputParser
+from loguru import logger
+
 
 class Generator:
-    def __init__(self, llm, retriever):
+    def __init__(self, llm):
         self.prompt = PromptTemplate(
-            template="""<|begin_of_text|><|start_header_id|>system<|end_header_id|> You are an assistant for question-answering tasks. 
+            template="""You are an assistant for question-answering tasks. 
             Use the following pieces of retrieved context to answer the question. If you don't know the answer, just say that you don't know. 
-            Use three sentences maximum and keep the answer concise <|eot_id|><|start_header_id|>user<|end_header_id|>
+            Use three sentences maximum and keep the answer concise
             Question: {question} 
-            Context: {context} 
-            Answer: <|eot_id|><|start_header_id|>assistant<|end_header_id|>""",
-            input_variables=["question", "document"],
+            Context: {context}""",
+            input_variables=["question", "context"],
         )
         self.llm = llm
-        self.retriever = retriever
-                
-    def generate(self, question):
-        # Post-processing
-        def format_docs(docs):
-            return "\n\n".join(doc.page_content for doc in docs)
 
+    def generate(self, question, documents):
+        logger.info(f"Generating answer for question: {question}")
         rag_chain = self.prompt | self.llm | StrOutputParser()
-
-        docs = self.retriever.invoke(question)
-        generation = rag_chain.invoke({"context": docs, "question": question})
+        generation = rag_chain.invoke({"context": documents, "question": question})
         return generation
