@@ -29,8 +29,9 @@ def main():
     enc = tiktoken.get_encoding("cl100k_base")
     total_tokens = 0
     for doc in docs:
-        tokens = enc.encode(doc)
-        total_tokens += len(tokens)
+        if isinstance(doc, str):  # Ensure doc is a string
+            tokens = enc.encode(doc)
+            total_tokens += len(tokens)
     print(f"Total tokens in retrieved documents: {total_tokens}")
     
     generator = Generator(llm=llm)
