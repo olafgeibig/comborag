@@ -23,7 +23,7 @@ def main():
     question = "agent memory"
     
     docs = retriever.retrieve(question)
-    print(docs)
+    # print(docs)
     
     # Count tokens in retrieved documents using tiktoken
     enc = tiktoken.get_encoding("cl100k_base")
