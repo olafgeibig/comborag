@@ -21,11 +21,12 @@ def main():
     indexer.index_urls(urls)
     question = "agent memory"
     
+    
     generator = Generator(llm=llm, retriever=indexer.retriever)
-    g = generator.generate(question)
-    print(g)
-    # grader = Grader(llm=llm, retriever=indexer.retriever)
-    # print(grader.retrieval_grade(question))
+    answer = generator.generate(question)
+
+    grader = Grader(llm=llm, retriever=indexer.retriever)
+    print(grader.halluciantion_grade(question))
 
 if __name__ == "__main__":
     main()
