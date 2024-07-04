@@ -14,7 +14,7 @@ class Indexer:
         logger.info(f"Creating vectorstore with collection name: {collection_name}")
         return Chroma(
             collection_name=collection_name,
-            embedding=GPT4AllEmbeddings(),
+            embedding=GPT4AllEmbeddings(model_name="ggml-model-name"),
         )
 
     def index_urls(self, urls):
