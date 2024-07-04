@@ -1,5 +1,6 @@
 from langchain.prompts import PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
+from loguru import logger
 
 
 class Grader:
@@ -34,14 +35,12 @@ class Grader:
         self.retriever = retriever
 
     def retrieval_grade(self, question):
-        print(question)
         docs = self.retriever.invoke(question)
-        print(docs)
         doc_txt = docs[1].page_content
-        print(doc_txt)
         retrieval_grader = self.retrieval_prompt | self.llm | self.output_parser
-        print(retrieval_grader)
-        return retrieval_grader.invoke({"question": question, "document": doc_txt})
+        result = retrieval_grader.invoke({"question": question, "document": doc_txt})
+        logger.info(f"Retrieval grade: {question}: {result}")
+        return result
 
     def halluciantion_grade(self, generation, docs):
         hallucination_grader = self.hallucination_prompt | self.llm | self.output_parser
