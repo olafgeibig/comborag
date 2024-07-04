@@ -21,12 +21,14 @@ def main():
     retriever.index_urls(urls)
     question = "agent memory"
     
-    
-    generator = Generator(llm=llm, retriever=retriever.retriever)
-    answer = generator.generate(question)
-
-    grader = Grader(llm=llm, retriever=retriever.retriever)
-    print(grader.halluciantion_grade(question))
+    docs = retriever.retrieve(question)
+    print(docs)
+    generator = Generator(llm=llm)
+    answer = generator.generate(question, docs)
+    print(answer)
+    grader = Grader(llm=llm)
+    print(grader.halluciantion_grade(question, docs))
+    print(grader.answer_grade(question, answer))
 
 if __name__ == "__main__":
     main()
