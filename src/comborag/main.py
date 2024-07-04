@@ -1,5 +1,5 @@
 from comborag.grader import Grader
-from comborag.indexer import Indexer
+from comborag.retriever import Retriever
 from comborag.generator import Generator
 from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
@@ -11,21 +11,21 @@ load_dotenv()  # take environment variables from .env.
 def main():
     llm = ChatOpenAI(model="gpt-4o", temperature=0)
     
-    # Create an indexer and index URLs
-    indexer = Indexer()
+    # Create a retriever and index URLs
+    retriever = Retriever()
     urls = [
         "https://lilianweng.github.io/posts/2023-06-23-agent/",
         "https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/",
         "https://lilianweng.github.io/posts/2023-10-25-adv-attack-llm/",
     ]    
-    indexer.index_urls(urls)
+    retriever.index_urls(urls)
     question = "agent memory"
     
     
-    generator = Generator(llm=llm, retriever=indexer.retriever)
+    generator = Generator(llm=llm, retriever=retriever.retriever)
     answer = generator.generate(question)
 
-    grader = Grader(llm=llm, retriever=indexer.retriever)
+    grader = Grader(llm=llm, retriever=retriever.retriever)
     print(grader.halluciantion_grade(question))
 
 if __name__ == "__main__":
